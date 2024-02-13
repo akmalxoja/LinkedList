@@ -134,13 +134,13 @@ namespace LList
             }
         }
 
-
         public void AddElements(T data, int count)
         {
             if (count <= 0)
             {
                 return; 
             }
+
 
             for (int i = 0; i < count; i++)
             {
@@ -149,6 +149,29 @@ namespace LList
                 head = newNode;
             }
         }
+
+        public T MaxElement()
+        {
+            if (head == null)
+            {
+                Console.WriteLine("Ro'yxat bo'sh");
+            }
+
+            T maxData = head.Data;
+            Node<T> current = head.Next;
+
+            while (current != null)
+            {
+                if (Comparer<T>.Default.Compare(current.Data, maxData) > 0)
+                {
+                    maxData = current.Data;
+                }
+                current = current.Next;
+            }
+
+            return maxData;
+        }
+
 
     }
     class Program
@@ -165,7 +188,8 @@ namespace LList
             linkedList.AddElements(4, 5);
 
             linkedList.Print();
-            
+            Console.WriteLine("Max: ");
+            Console.WriteLine( linkedList.MaxElement());
         }
     }
 }
